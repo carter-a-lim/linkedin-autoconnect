@@ -1,23 +1,30 @@
-const keywords = ['Cal Poly', 'Computer Science'];
+const schoolKeywords = ['Calpoly', 'Cal Poly', 'California Polytechnic'];
+const majorKeywords = ['CS', 'Comp Sci', 'Computer Science'];
+
 let i = 0;
 
 document.querySelectorAll('button[aria-label*="Invite"]').forEach(btn => {
-  const card = btn.closest('div[role="listitem"]'); // full card container
+  const card = btn.closest('div[role="listitem"]');
   if (!card) return;
 
   const cardText = card.innerText;
-  if (keywords.every(keyword => cardText.includes(keyword))) {
+
+  const schoolMatch = schoolKeywords.some(keyword => cardText.includes(keyword));
+  const majorMatch = majorKeywords.some(keyword => cardText.includes(keyword));
+
+  if (schoolMatch && majorMatch) {
     setTimeout(() => {
       console.log(cardText);
-      console.log('Connecting with:', btn.getAttribute('aria-label')); // log who you're connecting with
-      const innerSpan = btn.querySelector('span');
-       if (innerSpan) {
-          innerSpan.style.backgroundColor = 'green';
-          innerSpan.style.borderRadius = '8px'; // optional: keep rounded corners
-          innerSpan.style.color = 'white'; // optional: make text readable
-        }
+      console.log('Connecting with:', btn.getAttribute('aria-label'));
 
-      console.log(card.innerText); // send connection request
-    }, i++ * 1000); // stagger each action by 1 second
+      const innerSpan = btn.querySelector('span');
+      if (innerSpan) {
+        innerSpan.style.backgroundColor = 'green';
+        innerSpan.style.borderRadius = '8px';
+        innerSpan.style.color = 'white';
+      }
+
+      console.log(card.innerText); //btn.click for auto
+    }, i++ * 1000);
   }
 });
