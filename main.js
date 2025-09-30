@@ -1,7 +1,7 @@
-const schoolKeywords = ['Calpoly', 'Cal Poly', 'California Polytechnic'];
-const majorKeywords = ['CS', 'Comp Sci', 'Computer Science'];
+const schoolKeywords = []; // ex: 'Calpoly', 'Cal Poly', 'California Polytechnic'
+const majorKeywords = []; // ex: 'CS', 'Comp Sci', 'Computer Science'
 
-const connectedNames = new Set(); // 🧠 Track who you've already connected with
+const connectedNames = new Set();
 
 function autoConnectLoop() {
   let i = 0;
@@ -19,7 +19,7 @@ function autoConnectLoop() {
       const name = nameMatch?.[1];
 
       if (name && !connectedNames.has(name)) {
-        connectedNames.add(name); // ✅ Add to list so we don’t repeat
+        connectedNames.add(name);
 
         setTimeout(() => {
           console.log(`✅ Connecting with: ${name}`);
@@ -31,13 +31,13 @@ function autoConnectLoop() {
             innerSpan.style.color = 'white';
           }
 
-          console.log(cardText);
+          console.log(cardText); // use btn.click(); if you want to automatically connect
         }, i++ * 1000);
       }
     }
   });
 
-  setTimeout(autoConnectLoop, 5000); // 🔁 Repeat every 5 seconds
+  setTimeout(autoConnectLoop, 1000);
 }
 
 autoConnectLoop(); // 🚀 Start the loop
